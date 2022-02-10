@@ -1,4 +1,4 @@
-
+import '../App.css'
 
 
 function Search({ search, setSearch }) {
@@ -11,7 +11,7 @@ function Search({ search, setSearch }) {
         <div>
             <input 
                 type="text" 
-                className="input search-bar" 
+                className="input is-rounded search-bar busca" 
                 name="search" 
                 placeholder="Search" 
                 value={search}

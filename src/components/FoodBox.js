@@ -1,32 +1,41 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
+
+import foods from '../foods.json'
 
 
-
-function FoodBox({ foods, setForm, form, setFoodList, foodList }) {
-    const [food, setFood] = useState('')
-    const [qnts, setQnts] = useState('')
-    const [calories, setCalories] = useState('')
-
-
+function FoodBox({ bd, setFoodList, foodList }) {
+    const [food, setFood] = useState()
+    const [qnts, setQnts] = useState(null)
+    const [calories, setCalories] = useState()
 
     function handleQnts(event) {
         setQnts(event.target.value)
-        setFood (event.target.name)
+        setFood(event.target.name)
         setCalories(event.target.max * event.target.value) //calories
     }
 
-    const handleList = e => {
-        setFoodList([...foodList, [qnts, food,calories]])
+    function handleList() {
+        if (qnts){ //não tiver quantidade, não deixar atualizar a lista de comida
+            setFoodList([...foodList, [qnts, food, calories]])
+        } else {
+            return
+        }
     }
 
+    useEffect(() => {
+        console.log('banco de dados mudou')
+    },[bd])
+   
+    console.log(bd, foods)
+
     
-    console.log(foodList)
+
     return (
         <div>
-            {foods.map((food) => (
+            {bd.map((food) => (
                 <div className="box">
                     <article className="media">
-                        <div className="media-left"> 
+                        <div className="media-left">
                             <figure className="image is-64x64">
                                 <img src={food.image} alt="comida" />
                             </figure>
@@ -42,10 +51,10 @@ function FoodBox({ foods, setForm, form, setFoodList, foodList }) {
                         <div className="media-right">
                             <div className="field has-addons">
                                 <div className="control">
-                                    <input 
-                                        onChange={handleQnts} 
-                                        className="input" 
-                                        type="number" 
+                                    <input
+                                        onChange={handleQnts}
+                                        className="input"
+                                        type="number"
                                         min='0'
                                         name={food.name}
                                         calories={food.calories}
@@ -53,7 +62,7 @@ function FoodBox({ foods, setForm, form, setFoodList, foodList }) {
                                     />
                                 </div>
                                 <div className="control">
-                                    <button 
+                                    <button
                                         className="button is-info"
                                         onClick={handleList}>
                                         +
