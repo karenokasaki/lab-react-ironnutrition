@@ -60,6 +60,7 @@ function AddNewFood({ bd, setBd }) {
                     required
                     name="name"
                     onChange={handleChange}
+                    value={addForm.name}
                 />
 
                 <label className="label">Cal</label>
