@@ -1,72 +1,28 @@
 import React from 'react';
-import { useState } from 'react'
+
+import { Routes, Route } from 'react-router-dom'
 
 import 'bulma/css/bulma.css'
 import './App.css';
 
-import foods from './foods.json'
-
-import FoodBox from './components/FoodBox';
-import Search from './components/Search';
-import TodayFoods from './components/TodayFoods';
-import AddNewFood from './components/AddNewFood'
+import Pets from './pages/Pets/Pets';
+import Home from './pages/Home/Home';
+import Foods from './pages/Foods/Foods'
 
 
 
 
 function App() {
-  const [bd, setBd] = useState(foods)
-  const [search, setSearch] = useState('') //o que esta´escrito na barra de pesquisa
-  const [form, setForm] = useState()
-  const [foodList, setFoodList] = useState([])
-
-  const handleBtnAdd = (e) => {
-    e.preventDefault()
-    let form = document.querySelector('form')
-    console.log(form)
-    form.classList.add("show")
-    form.classList.remove("hide")
-  }
-
-
-
-  console.log(bd, foods)
-
+ 
   return (
     <div className="App">
-      <nav>
-        <h1 className="title navbar-is-center">IronNutrition</h1>
-      </nav>
-      <button onClick={handleBtnAdd} className='button'>Add Food</button>
+      
 
-      <AddNewFood bd={bd} setBd={setBd} />
-
-      <Search
-        search={search}
-        setSearch={setSearch}
-        className='search'
-      />
-
-
-      <div className='columns'>
-        <FoodBox
-          bd={
-            bd 
-              .filter(food => ((food.name)).toLowerCase()
-                .includes(search.toLowerCase()))
-          }
-          className='column'
-          setForm={setForm}
-          form={form}
-          setFoodList={setFoodList}
-          foodList={foodList}
-        />
-        <TodayFoods
-          className='column'
-          foodList={foodList}
-        />
-
-      </div>
+      <Routes>
+        <Route path="/" exct element={<Home />} />
+        <Route path="/pets" element={<Pets />} />
+        <Route path="/foods" element={<Foods />} />
+      </Routes>
 
     </div>
   );

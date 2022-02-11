@@ -1,13 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
-import foods from '../foods.json'
 
 
 function FoodBox({ bd, setFoodList, foodList }) {
     const [food, setFood] = useState()
     const [qnts, setQnts] = useState(null)
     const [calories, setCalories] = useState()
-    const [rereload, setRereload] = useState(false)
 
     function handleQnts(event) {
         setQnts(event.target.value)
@@ -18,7 +16,7 @@ function FoodBox({ bd, setFoodList, foodList }) {
     function handleList(event) {
         if (qnts > 0){ //não tiver quantidade, não deixar atualizar a lista de comida
             setFoodList([...foodList, [qnts, food, calories]])
-            
+            console.log(event.target)
 
             //descobri como limpar o campo depois de submeter o FORM
         } else {
@@ -26,18 +24,11 @@ function FoodBox({ bd, setFoodList, foodList }) {
         }
     }
 
-    useEffect(() => {
-        console.log('banco de dados mudou')
-    },[bd])
    
-    console.log(bd, foods)
-
-    
-
     return (
         <div>
             {bd.map((food) => (
-                <div className="box">
+                <div className="box" key={food.name}>
                     <article className="media">
                         <div className="media-left">
                             <figure className="image is-64x64">

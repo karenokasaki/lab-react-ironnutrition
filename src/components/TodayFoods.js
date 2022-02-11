@@ -9,10 +9,10 @@ function TodayFoods({ foodList }) {
     <div className="column">
       <br />
       <h2 className="subtitle">Today's foods</h2>
-      <h3>{foodList.length === 0 ? 'Add some food!' : ''}</h3>
+      <h3>{foodList.length === 0 ? 'Add some food and lets count the calories!' : ''}</h3>
       <ul>
         {foodList.map((food) => (
-          <li>{food[0]} {food[1]} - {food[2]} calories</li>
+          <li key={food[1]} >{food[0]} {food[1]} - {food[2]} calories</li>
         ))}
       </ul>
       <br />

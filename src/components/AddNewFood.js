@@ -29,7 +29,7 @@ function AddNewFood({ bd, setBd }) {
     }
 
     //pegando todos os campos do form
-    const handleName = (event) => {
+    /* const handleName = (event) => {
         setAddForm({...addForm, 'name' : event.target.value }) 
     }
     const handleCal = (event) => {
@@ -37,7 +37,7 @@ function AddNewFood({ bd, setBd }) {
     }
     const handleImg = (event) => {
         setAddForm([{...addForm, 'image' : event.target.value} ]) 
-    }
+    } */
      // achar um jeito mais fácil de iterar o event.target.name
 
      const handleChange = (event) => {
