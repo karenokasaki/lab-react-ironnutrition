@@ -7,6 +7,7 @@ function FoodBox({ bd, setFoodList, foodList }) {
     const [food, setFood] = useState()
     const [qnts, setQnts] = useState(null)
     const [calories, setCalories] = useState()
+    const [rereload, setRereload] = useState(false)
 
     function handleQnts(event) {
         setQnts(event.target.value)
@@ -14,9 +15,12 @@ function FoodBox({ bd, setFoodList, foodList }) {
         setCalories(event.target.max * event.target.value) //calories
     }
 
-    function handleList() {
-        if (qnts){ //não tiver quantidade, não deixar atualizar a lista de comida
+    function handleList(event) {
+        if (qnts > 0){ //não tiver quantidade, não deixar atualizar a lista de comida
             setFoodList([...foodList, [qnts, food, calories]])
+            
+
+            //descobri como limpar o campo depois de submeter o FORM
         } else {
             return
         }
@@ -73,7 +77,7 @@ function FoodBox({ bd, setFoodList, foodList }) {
                     </article>
                 </div>
 
-            ))}
+            )).reverse()}
         </div>
     );
 }

@@ -16,10 +16,15 @@ function AddNewFood({ bd, setBd }) {
         quantity: 0
     })
 
+
+
     const handleForm = (e) => {
         e.preventDefault()
-        setBd({...bd, addForm})
-        
+        setBd([...bd, addForm])
+        console.log(e.currentTarget.name.value)
+        let form = document.querySelector('form')
+        form.classList.add("hide")
+        form.classList.remove("show")
         
     }
 
@@ -31,16 +36,20 @@ function AddNewFood({ bd, setBd }) {
         setAddForm({...addForm, 'calories' : event.target.value }) 
     }
     const handleImg = (event) => {
-        setAddForm({...addForm, 'image' : event.target.value }) 
+        setAddForm([{...addForm, 'image' : event.target.value} ]) 
     }
      // achar um jeito mais fácil de iterar o event.target.name
+
+     const handleChange = (event) => {
+         setAddForm({ ...addForm, [event.target.name]: event.target.value})
+     }
 
 
     console.log(bd)
     return (
         <div className="form">
             <form
-                className="field"
+                className="field hide"
                 onSubmit={handleForm}
             >
                 <label className="label">Name</label>
@@ -50,7 +59,7 @@ function AddNewFood({ bd, setBd }) {
                     className="input is-small"
                     required
                     name="name"
-                    onChange={handleName}
+                    onChange={handleChange}
                 />
 
                 <label className="label">Cal</label>
@@ -60,7 +69,7 @@ function AddNewFood({ bd, setBd }) {
                     className="input is-small"
                     required
                     name="calories"
-                    onChange={handleCal}
+                    onChange={handleChange}
                 />
 
                 <label className="label">IMG</label>
@@ -69,7 +78,7 @@ function AddNewFood({ bd, setBd }) {
                     type="text"
                     className="input is-small"
                     name="image"
-                    onChange={handleImg}
+                    onChange={handleChange}
                 />
                 <button
                     className="button is-danger is-small"

@@ -20,15 +20,24 @@ function App() {
   const [form, setForm] = useState()
   const [foodList, setFoodList] = useState([])
 
+  const handleBtnAdd = (e) => {
+    e.preventDefault()
+    let form = document.querySelector('form')
+    console.log(form)
+    form.classList.add("show")
+    form.classList.remove("hide")
+  }
+
+
 
   console.log(bd, foods)
 
   return (
     <div className="App">
       <nav>
-        <h1 className="title navbar">IronNutrition</h1>
+        <h1 className="title navbar-is-center">IronNutrition</h1>
       </nav>
-      <button className='button'>Add Food</button>
+      <button onClick={handleBtnAdd} className='button'>Add Food</button>
 
       <AddNewFood bd={bd} setBd={setBd} />
 
