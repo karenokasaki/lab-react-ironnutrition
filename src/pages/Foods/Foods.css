@@ -1,0 +1,14 @@
+
+
+.columun {
+    display: block;
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 4.5rem;
+    margin-top: 10px;
+}
+
+hr {
+    margin: 0.5rem;
+}

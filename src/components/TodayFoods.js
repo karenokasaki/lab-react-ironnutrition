@@ -1,6 +1,6 @@
 
 //atualizar quando o botão "+" for acionado. 
-
+import '../pages/Foods/Foods.css'
 function TodayFoods({ foodList }) {
 
 

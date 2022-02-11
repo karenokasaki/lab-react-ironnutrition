@@ -7,6 +7,7 @@ import Search from '../../components/Search';
 import TodayFoods from '../../components/TodayFoods';
 import AddNewFood from '../../components/AddNewFood';
 import { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 
 function Foods() {
@@ -25,12 +26,9 @@ function Foods() {
 
     return (
         <div>
-            <nav>
-                <h1 className="title navbar-is-center">IronNutrition</h1>
-            </nav>
-            <button onClick={handleBtnAdd} className='button'>Add Food</button>
+            <Link className="button is-small" to="/">Voltar</Link>
+            <h1 className="title navbar-is-center">Calories Counter</h1>
 
-            <AddNewFood bd={bd} setBd={setBd} />
 
             <Search
                 search={search}
@@ -38,22 +36,25 @@ function Foods() {
                 className='search'
             />
 
+            <button onClick={handleBtnAdd} className='button is-danger'>Add Your Food</button>
+            <AddNewFood bd={bd} setBd={setBd} />
 
             <div className='columns'>
+                <TodayFoods
+                    className='column'
+                    foodList={foodList}
+                />
+                <hr/>
                 <FoodBox
                     bd={
                         bd
                             .filter(food => ((food.name)).toLowerCase()
                                 .includes(search.toLowerCase()))
                     }
-                    className='column'
+                    className='column is-two-thirds'
                     setForm={setForm}
                     form={form}
                     setFoodList={setFoodList}
-                    foodList={foodList}
-                />
-                <TodayFoods
-                    className='column'
                     foodList={foodList}
                 />
 

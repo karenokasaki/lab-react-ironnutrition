@@ -9,13 +9,19 @@
 .links {
   display: flex;
   width: 200px;
-  height: 100px;
+  height: 80px;
   border: 1px solid black;
   align-items: center;
   justify-content: center;
   margin-top: 30px;
   -webkit-animation: shadow-pop-tr 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) both;
   animation: shadow-pop-tr 0.3s cubic-bezier(0.47, 0, 0.745, 0.715) both;
+}
+
+a {
+  color: black;
+  font-weight: bold;
+  font-family: "Roboto";
 }
 
 .shadow-pop-tr {

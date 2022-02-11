@@ -44,12 +44,10 @@ function AddNewFood({ bd, setBd }) {
          setAddForm({ ...addForm, [event.target.name]: event.target.value})
      }
 
-
-    console.log(bd)
     return (
         <div className="form">
             <form
-                className="field hide"
+                className="field hide form"
                 onSubmit={handleForm}
             >
                 <label className="label">Name</label>
@@ -82,8 +80,8 @@ function AddNewFood({ bd, setBd }) {
                     onChange={handleChange}
                 />
                 <button
-                    className="button is-danger is-small"
-                >SEND!</button>
+                    className="button is-success is-small"
+                >Save</button>
 
             </form>
         </div>
