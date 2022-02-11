@@ -1,8 +1,7 @@
-import { useEffect } from "react";
 
 
 
-function Currency({setCurrency, realTimePrice, handleCurrency}) {
+function Currency({setCurrency, realTimePrice}) {
 
     function handleCurrency(event) {
         setCurrency(event.target.value)

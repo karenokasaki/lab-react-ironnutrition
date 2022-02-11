@@ -9,7 +9,7 @@ import './Bitcoin.css'
 
 
 function Bitcoin() {
-    
+
     const [dataApi, setDataApi] = useState({
         'date': 'value'
     })
@@ -19,51 +19,49 @@ function Bitcoin() {
     const [loading, setLoading] = useState(false)
     const [chart, setChart] = useState(null);
     const [currency, setCurrency] = useState('USD')
-    const [minMax, setMinMax] = useState([])
+    /* const [minMax, setMinMax] = useState([]) */
 
-    const [realtimeLink, setRealTimeLink] = useState(`https://api.coindesk.com/v1/bpi/currentprice/${currency}.json`)
     const [realTimePrice, setRealTimePrice] = useState('')
 
-    const [dataBRL, setDataBRL] = useState({ 'dia': 'valor' })
-    const [dataCNY, setDataCNY] = useState({ 'dia': 'valor' })
+    /*     const [dataBRL, setDataBRL] = useState({ 'dia': 'valor' })
+        const [dataCNY, setDataCNY] = useState({ 'dia': 'valor' }) */
 
 
 
-/*     useEffect(() => {
-        axios
-            .get('https://api.coindesk.com/v1/bpi/historical/close.json?currency=BRL')
-            .then((response) => {
-                setDataBRL(response.data.bpi)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-        axios
-            .get('https://api.coindesk.com/v1/bpi/historical/close.json?currency=CNY')
-            .then((response) => {
-                setDataCNY(response.data.bpi)
-            }).catch((error) => {
-                console.log(error)
-            })
-    }, []) */
+    /*     useEffect(() => {
+            axios
+                .get('https://api.coindesk.com/v1/bpi/historical/close.json?currency=BRL')
+                .then((response) => {
+                    setDataBRL(response.data.bpi)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+            axios
+                .get('https://api.coindesk.com/v1/bpi/historical/close.json?currency=CNY')
+                .then((response) => {
+                    setDataCNY(response.data.bpi)
+                }).catch((error) => {
+                    console.log(error)
+                })
+        }, []) */
 
     useEffect(() => {
         axios
-            .get(realtimeLink)
+            .get(`https://api.coindesk.com/v1/bpi/currentprice/USD.json`)
             .then((response) => {
                 // const pathToValue = `response.data.bpi.${currency}.rate` 
                 setRealTimePrice(response.data.bpi.USD.rate)
+                if (currency) {
+                    setLink(`http://api.coindesk.com/v1/bpi/historical/close.json?currency=${currency}`)
+                }
             })
             .catch((error) => {
                 console.log(error)
             })
-    }, [realtimeLink])
-
-    useEffect(() => {
-        if (currency) {
-            setLink(`http://api.coindesk.com/v1/bpi/historical/close.json?currency=${currency}`)
-        }
     }, [currency])
+
+
 
     //se o dia mudar, mudar também o link que está sendo enviado para a api
     useEffect(() => {
@@ -128,23 +126,23 @@ function Bitcoin() {
                 setChart(instanceChart)
             }
             renderChart()
-            setMinMax(Object.values)
+
         }
     }, [loading, dataApi])
 
-    
 
-    const ArrayMin = function (array) {
+
+    /* const ArrayMin = function (array) {
         return Math.min.apply(Math, array)
     }
 
     const ArrayMax = function (array) {
         return Math.max.apply(Math, array)
-    }
-    
+    } */
+
     return (
         <div className="bitcoin-page">
-            <h1 className="title">Let's see how Bitcoin is doing!</h1> 
+            <h1 className="title">Let's see how Bitcoin is doing!</h1>
             <div className="container-up">
                 <Currency setLink={setLink} setCurrency={setCurrency} realTimePrice={realTimePrice} />
                 <DateFilter setDia={setDia} />
@@ -158,7 +156,7 @@ function Bitcoin() {
         </div>
     );
 }
-    
 
-    
+
+
 export default Bitcoin;
