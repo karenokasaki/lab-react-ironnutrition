@@ -6,7 +6,7 @@ function Home() {
     return (
         <div className='homepage'>
             <Link className='links' to="/foods">Calories Counter</Link>
-            <Link className='links' to="/bitcoin">BITCOIN Api</Link>
+            {/* <Link className='links' to="/bitcoin">BITCOIN Api</Link> */}
 
             {/* <Link className='links' to="/pets">Cats and Dogs Adoption</Link> */}
             <a className='links' href='https://karenokasaki.github.io/memory/'>Memory Game</a>

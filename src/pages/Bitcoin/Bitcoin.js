@@ -88,15 +88,13 @@ function Bitcoin() {
 
     useEffect(() => {
         if (!loading) { // se loading for false (api já terminou de enviar as informações), renderizar o chart
-
-            function renderChart() {
+            const renderChart = () => {
                 const ctx = document.getElementById('instanceChart').getContext('2d');
-
+                
                 if (chart) {
                     chart.destroy();
                 }
-
-
+                
                 const instanceChart = new Chart(
                     ctx, { //config
                     type: 'line',
@@ -128,7 +126,8 @@ function Bitcoin() {
             renderChart()
 
         }
-    }, [loading, dataApi])
+    }, [loading, dataApi, chart])
+    
 
 
 
